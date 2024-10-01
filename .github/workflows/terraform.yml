@@ -1,9 +1,6 @@
-name: "Terraform Plan & Apply"
+name: "Terraform Apply"
 on:
   push:
-    branches:
-      - main
-  pull_request:
     branches:
       - main
 jobs:

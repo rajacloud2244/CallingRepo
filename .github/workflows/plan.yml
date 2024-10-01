@@ -1,4 +1,4 @@
-name: "Terraform Apply"
+name: "Terraform Plan"
 on:
   pull_request:
     branches:
@@ -25,6 +25,4 @@ jobs:
         id: plan
         run: terraform plan
         
-      - name: Terraform Apply
-        id: apply
-        run: terraform apply -auto-approve
+     

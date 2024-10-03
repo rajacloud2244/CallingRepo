@@ -1,5 +1,5 @@
 module "cognitive_account" {
-   source = "git::https://rajacloud2244:${var.git_token}@github.com/rajacloud2244/StandardModules.git//cognitive_account"
+   source = "git::https://rajacloud2244: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@github.com/rajacloud2244/StandardModules.git//cognitive_account"
   location                            = local.location
   resource_group_name                 = local.resource_group_name
   cognitive_account_name              = local.cognitive_account_name  

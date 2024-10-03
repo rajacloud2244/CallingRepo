@@ -1,5 +1,5 @@
 module "storage_account" {
-   source = "git::https://rajacloud2244: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@github.com/rajacloud2244/StandardModules.git//storage_account/"
+  source = "git::https://rajacloud2244:${{ secrets.PAT_TOKEN }}@github.com/rajacloud2244/StandardModules.git//storage_account/"
   storage_account_name       = local.storage_account_name
   resource_group_name        = local.resource_group_name
   location                   = local.location

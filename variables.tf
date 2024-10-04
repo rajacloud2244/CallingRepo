@@ -82,19 +82,26 @@ output "planted_flower_names" {
   value = local.flower_names
 }
 
-variable "fruits" {
-  description = "List of fruits"
-  type        = list(string)
-  default     = ["apple", "banana", "orange"]  # A list of fruits
+provider "null" {}  # We use a null provider for demonstration
+
+variable "animal_sounds" {
+  description = "Map of animals and their sounds"
+  type        = map(string)
+  default     = {
+    "dog"   = "bark"
+    "cat"   = "meow"
+    "cow"   = "moo"
+  }  # A map of animals and their sounds
 }
 
-resource "null_resource" "fruit_greetings" {
-  for_each = toset(var.fruits)  # Loop through each fruit in the list
+resource "null_resource" "animal_greetings" {
+  for_each = var.animal_sounds  # Loop through each animal in the map
 
   provisioner "local-exec" {
-    command = "echo Hello, ${each.key}!"  # Print a greeting for each fruit
+    command = "echo The ${each.key} goes '${each.value}'!"  # Print a greeting for each animal
   }
 }
+
 
 
 

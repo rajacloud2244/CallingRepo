@@ -82,37 +82,39 @@ output "planted_flower_names" {
   value = local.flower_names
 }
 
-# Step 1: Define a variable with fruits and their benefits
-variable "fruits" {
-  description = "Map of fruits and their nutritional benefits"
+# Step 1: Define a variable with vehicles and their attributes
+variable "vehicles" {
+  description = "Map of vehicles and their attributes"
   type        = map(any)  # Allow lists in the map
   default = {
-    "apple"  = "rich in fiber"  # Single benefit for apple
-    "godamulu" = ["high in potassium", "great source of energy", "good for digestion"]  # Multiple benefits for banana
-    "orange" = "boosts immunity"  # Single benefit for orange
+    "car"   = ["comfortable", "fast", "fuel-efficient"]  # Car has multiple attributes
+    "bike"   = "eco-friendly"  # Bike has one attribute
+    "truck"  = ["spacious", "powerful", "suitable for cargo"]  # Truck has multiple attributes
   }
 }
 
-# Step 2: Create a resource for each fruit using for_each
-resource "null_resource" "fruit_benefits" {
-  for_each = var.fruits  # Loop over each fruit
+# Step 2: Create a resource for each vehicle using for_each
+resource "null_resource" "vehicle_attributes" {
+  for_each = var.vehicles  # Loop through each vehicle
 
   provisioner "local-exec" {
     command = <<EOT
-      if [ "${each.key}" = "godamulu" ]; then
-        echo "The fruit ${each.key} has the following benefits: ${join(", ", each.value)}."
+      if [ "${each.key}" = "car" ]; then
+        echo "The ${each.key} has the following attributes: ${join(", ", each.value)}."
+      elif [ "${each.key}" = "truck" ]; then
+        echo "The ${each.key} has the following attributes: ${join(", ", each.value)}."
       else
-        echo "The fruit ${each.key} has the benefit of: ${each.value}."
+        echo "The ${each.key} has the attribute of: ${each.value}."
       fi
     EOT
   }
 }
 
-# Step 3: Output the benefits of the fruits
-output "fruit_benefits_output" {
+# Step 3: Output the attributes of the vehicles
+output "vehicle_attributes_output" {
   value = [
-    for fruit in keys(var.fruits) :
-    "${fruit} has the benefit of '${join(", ", var.fruits[fruit])}'"
+    for vehicle in keys(var.vehicles) :
+    "${vehicle} has the attribute of '${join(", ", var.vehicles[vehicle])}'"
   ]
 }
 

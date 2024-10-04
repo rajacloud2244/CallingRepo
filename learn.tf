@@ -22,3 +22,23 @@ variable "fruits" {
 output "fruit_list" {
   value = var.fruits
 }
+
+
+# Define a variable for the map of fruits
+variable "fruit_info" {
+  description = "A map of fruits with their colors and prices"
+  type        = map(object({
+    color  = string
+    price  = number
+  }))
+  default = {
+    Apple  = { color = "Red", price = 1.2 }
+    Banana = { color = "Yellow", price = 0.5 }
+    Cherry = { color = "Red", price = 2.0 }
+  }
+}
+
+# Output the information for each fruit
+output "fruits" {
+  value = var.fruit_info
+}

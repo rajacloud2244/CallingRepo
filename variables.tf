@@ -85,10 +85,10 @@ output "planted_flower_names" {
 # Step 1: Define a variable with colors and their meanings
 variable "colors" {
   description = "Map of colors and their meanings"
-  type        = map(string)
+  type        = map(any)  # Allow lists in the map
   default = {
     "red"    = "love"
-    "blue"   = "calm"
+    "blue"   = ["calm", "trust", "peace"]  # Multiple meanings for blue
     "green"  = "nature"
   }
 }

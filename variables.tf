@@ -38,7 +38,16 @@ variable "fruit_info" {
   }
 }
 
+# Apple, banana , cherr is keys
+
 # Output the information for each fruit
 output "fruits" {
   value = var.fruit_info
+}
+
+# Define a variable for enabling a feature
+variable "enable_feature" {
+  description = "Whether to enable the feature"
+  type        = bool
+  default     = false  # Change to true to enable the feature
 }

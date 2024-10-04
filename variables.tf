@@ -102,7 +102,96 @@ resource "null_resource" "animal_greetings" {
   }
 }
 
+/*
+variable "vm_configs" {
+  description = "Map of Virtual Machines configurations"
+  type        = map(object({
+    admin_username = string
+    admin_password = string
+    size           = string
+  }))
+  default = {
+    "vm1" = {
+      admin_username = "adminuser1"
+      admin_password = "P@ssw0rd123!"
+      size           = "Standard_DS1_v2"
+    },
+    "vm2" = {
+      admin_username = "adminuser2"
+      admin_password = "P@ssw0rd123!"
+      size           = "Standard_DS1_v2"
+    },
+    "vm3" = {
+      admin_username = "adminuser3"
+      admin_password = "P@ssw0rd123!"
+      size           = "Standard_DS1_v2"
+    }
+  }
+}
 
+resource "azurerm_resource_group" "example" {
+  name     = "example-resources"
+  location = "East US"
+}
 
+resource "azurerm_virtual_network" "example" {
+  name                = "example-vnet"
+  address_space       = ["10.0.0.0/16"]
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
+}
+
+resource "azurerm_subnet" "example" {
+  name                 = "example-subnet"
+  resource_group_name  = azurerm_resource_group.example.name
+  virtual_network_name = azurerm_virtual_network.example.name
+  address_prefixes     = ["10.0.1.0/24"]
+}
+
+resource "azurerm_network_interface" "example" {
+  for_each = var.vm_configs
+
+  name                = "${each.key}-nic"
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
+
+  ip_configuration {
+    name                          = "${each.key}-ipconfig"
+    private_ip_address_allocation = "Dynamic"
+    subnet_id                    = azurerm_subnet.example.id
+  }
+}
+
+resource "azurerm_linux_virtual_machine" "example" {
+  for_each = var.vm_configs
+
+  name                = each.key
+  resource_group_name = azurerm_resource_group.example.name
+  location            = azurerm_resource_group.example.location
+  size                = each.value.size
+  admin_username      = each.value.admin_username
+  admin_password      = each.value.admin_password
+
+  network_interface_ids = [
+    azurerm_network_interface.example[each.key].id,
+  ]
+
+  os_disk {
+    caching       = "ReadWrite"
+    create_option = "FromImage"
+  }
+
+  source_image_reference {
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = "20.04-LTS"
+    version   = "latest"
+  }
+}
+
+output "virtual_machine_names" {
+  value = [for vm in azurerm_linux_virtual_machine.example : vm.name]
+}
+*/
 
 

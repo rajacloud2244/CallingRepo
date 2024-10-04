@@ -57,3 +57,24 @@ output "snack_choice" {
   value = var.eat_apple ? "Let's eat an apple!" : "Let's eat a cookie!"
 }
 
+# Define a variable for how many cookies to bake
+variable "cookie_count" {
+  description = "Number of cookies to bake"
+  type        = number
+  default     = 5  # You can change this number to bake more or fewer cookies
+}
+
+# Create a list of cookies
+resource "null_resource" "cookie" {
+  count = var.cookie_count  # This tells Terraform how many cookies to make
+
+  # Each cookie has a unique name
+  provisioner "local-exec" {
+    command = "echo Baking cookie number ${count.index + 1}"
+  }
+}
+
+# Output the total number of cookies baked
+output "total_cookies_baked" {
+  value = var.cookie_count
+}

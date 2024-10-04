@@ -2,7 +2,7 @@ name: "Terraform Apply"
 on:
   push:
     branches:
-      - main
+      - learn
 jobs:
   terraform:
     name: "Run Terraform Plan"

@@ -82,29 +82,38 @@ output "planted_flower_names" {
   value = local.flower_names
 }
 
-# Step 1: Define a variable with colors and their meanings
-variable "colors" {
-  description = "Map of colors and their meanings"
+# Step 1: Define a variable with fruits and their benefits
+variable "fruits" {
+  description = "Map of fruits and their nutritional benefits"
   type        = map(any)  # Allow lists in the map
   default = {
-    "red"    = "love"
-    "blue"   = ["calm", "trust", "peace"]  # Multiple meanings for blue
-    "green"  = "nature"
+    "apple"  = "rich in fiber"  # Single benefit for apple
+    "banana" = ["high in potassium", "great source of energy", "good for digestion"]  # Multiple benefits for banana
+    "orange" = "boosts immunity"  # Single benefit for orange
   }
 }
 
-# Step 2: Create a resource for each color using for_each
-resource "null_resource" "color_meaning" {
-  for_each = var.colors  # Loop over each color
+# Step 2: Create a resource for each fruit using for_each
+resource "null_resource" "fruit_benefits" {
+  for_each = var.fruits  # Loop over each fruit
 
   provisioner "local-exec" {
-    command = "echo The color ${each.key} represents ${each.value}."
+    command = <<EOT
+      if [ "${each.key}" = "banana" ]; then
+        echo "The fruit ${each.key} has the following benefits: ${join(", ", each.value)}."
+      else
+        echo "The fruit ${each.key} has the benefit of: ${each.value}."
+      fi
+    EOT
   }
 }
 
-# Step 3: Output the meanings of the colors
-output "color_meanings" {
-  value = [for color in keys(var.colors) : "${color} represents '${var.colors[color]}'"]
+# Step 3: Output the benefits of the fruits
+output "fruit_benefits_output" {
+  value = [
+    for fruit in keys(var.fruits) :
+    "${fruit} has the benefit of '${join(", ", var.fruits[fruit])}'"
+  ]
 }
 
 

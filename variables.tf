@@ -88,7 +88,7 @@ variable "vehicles" {
   type        = map(list(string))  # Ensure all values are lists of strings
   default = {
     "car"   = ["comfortable", "fast", "fuel-efficient"]  # Car has multiple attributes
-    "bike"  = ["eco-friendly"]  # Bike now has a single attribute as a list
+    "bike"  = ["eco-friendly"]  # Bike as a single attribute in a list
     "truck" = ["spacious", "powerful", "suitable for cargo"]  # Truck has multiple attributes
   }
 }
@@ -99,13 +99,7 @@ resource "null_resource" "vehicle_attributes" {
 
   provisioner "local-exec" {
     command = <<EOT
-      if [ "${each.key}" = "car" ]; then
-        echo "The ${each.key} has the following attributes: ${join(", ", each.value)}."
-      elif [ "${each.key}" = "truck" ]; then
-        echo "The ${each.key} has the following attributes: ${join(", ", each.value)}."
-      else
-        echo "The ${each.key} has the attribute of: ${each.value}."
-      fi
+      echo "The ${each.key} has the following attributes: ${join(", ", each.value)}."
     EOT
   }
 }
@@ -117,4 +111,5 @@ output "vehicle_attributes_output" {
     "${vehicle} has the attributes of '${join(", ", var.vehicles[vehicle])}'"
   ]
 }
+
 

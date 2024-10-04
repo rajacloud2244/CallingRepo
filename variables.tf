@@ -45,9 +45,15 @@ output "fruits" {
   value = var.fruit_info
 }
 
-# Define a variable for enabling a feature
-variable "enable_feature" {
-  description = "Whether to enable the feature"
+# Define a variable for the snack choice
+variable "eat_apple" {
+  description = "Should we eat an apple?"
   type        = bool
-  default     = false  # Change to true to enable the feature
+  default     = true  # Change this to false to choose the cookie
 }
+
+# Output the snack choice
+output "snack_choice" {
+  value = var.eat_apple ? "Let's eat an apple!" : "Let's eat a cookie!"
+}
+

@@ -82,5 +82,29 @@ output "planted_flower_names" {
   value = local.flower_names
 }
 
+# Step 1: Define a variable with colors and their meanings
+variable "colors" {
+  description = "Map of colors and their meanings"
+  type        = map(string)
+  default = {
+    "red"    = "love"
+    "blue"   = "calm"
+    "green"  = "nature"
+  }
+}
+
+# Step 2: Create a resource for each color using for_each
+resource "null_resource" "color_meaning" {
+  for_each = var.colors  # Loop over each color
+
+  provisioner "local-exec" {
+    command = "echo The color ${each.key} represents ${each.value}."
+  }
+}
+
+# Step 3: Output the meanings of the colors
+output "color_meanings" {
+  value = [for color in keys(var.colors) : "${color} represents '${var.colors[color]}'"]
+}
 
 

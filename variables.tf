@@ -82,34 +82,20 @@ output "planted_flower_names" {
   value = local.flower_names
 }
 
-# Step 1: Define a variable with vehicles and their attributes
-variable "vehicles" {
-  description = "Map of vehicles and their attributes"
-  type        = map(list(string))  # Ensure all values are lists of strings
-  default = {
-    "car"   = ["comfortable", "fast", "fuel-efficient"]  # Car has multiple attributes
-    "bike"  = ["eco-friendly"]  # Bike as a single attribute in a list
-    "truck" = ["spacious", "powerful", "suitable for cargo"]  # Truck has multiple attributes
-  }
+variable "fruits" {
+  description = "List of fruits"
+  type        = list(string)
+  default     = ["apple", "banana", "orange"]  # A list of fruits
 }
 
-# Step 2: Create a resource for each vehicle using for_each
-resource "null_resource" "vehicle_attributes" {
-  for_each = var.vehicles  # Loop through each vehicle
+resource "null_resource" "fruit_greetings" {
+  for_each = toset(var.fruits)  # Loop through each fruit in the list
 
   provisioner "local-exec" {
-    command = <<EOT
-      echo "The ${each.key} has the following attributes: ${join(", ", each.value)}."
-    EOT
+    command = "echo Hello, ${each.key}!"  # Print a greeting for each fruit
   }
 }
 
-# Step 3: Output the attributes of the vehicles
-output "vehicle_attributes_output" {
-  value = [
-    for vehicle in keys(var.vehicles) :
-    "${vehicle} has the attributes of '${join(", ", var.vehicles[vehicle])}'"
-  ]
-}
+
 
 

@@ -88,7 +88,7 @@ variable "fruits" {
   type        = map(any)  # Allow lists in the map
   default = {
     "apple"  = "rich in fiber"  # Single benefit for apple
-    "banana" = ["high in potassium", "great source of energy", "good for digestion"]  # Multiple benefits for banana
+    "godamulu" = ["high in potassium", "great source of energy", "good for digestion"]  # Multiple benefits for banana
     "orange" = "boosts immunity"  # Single benefit for orange
   }
 }
@@ -99,7 +99,7 @@ resource "null_resource" "fruit_benefits" {
 
   provisioner "local-exec" {
     command = <<EOT
-      if [ "${each.key}" = "banana" ]; then
+      if [ "${each.key}" = "godamulu" ]; then
         echo "The fruit ${each.key} has the following benefits: ${join(", ", each.value)}."
       else
         echo "The fruit ${each.key} has the benefit of: ${each.value}."

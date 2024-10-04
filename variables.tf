@@ -57,24 +57,30 @@ output "snack_choice" {
   value = var.eat_apple ? "Let's eat an apple!" : "Let's eat a cookie!"
 }
 
-# Define a variable for how many cookies to bake
-variable "cookie_count" {
-  description = "Number of cookies to bake"
+# Define a variable for how many flowers to plant
+variable "flower_count" {
+  description = "Number of flowers to plant"
   type        = number
-  default     = 5  # You can change this number to bake more or fewer cookies
+  default     = 4  # Change this number to plant more or fewer flowers
 }
 
-# Create a list of cookies
-resource "null_resource" "cookie" {
-  count = var.cookie_count  # This tells Terraform how many cookies to make
-
-  # Each cookie has a unique name
+# Create a flower bed resource
+resource "null_resource" "flower" {
+  count = var.flower_count  # This tells Terraform how many flowers to plant
   provisioner "local-exec" {
-    command = "echo Baking cookie number ${count.index + 1}"
+    command = "echo Planting flower number ${count.index + 1}"  # Each flower has a unique name
   }
 }
 
-# Output the total number of cookies baked
-output "total_cookies_baked" {
-  value = var.cookie_count
+# Create a list of flower names
+locals {
+  flower_names = [for i in range(var.flower_count) : "Flower ${i + 1}"]
 }
+
+# Output the names of the planted flowers
+output "planted_flower_names" {
+  value = local.flower_names
+}
+
+
+

@@ -85,11 +85,11 @@ output "planted_flower_names" {
 # Step 1: Define a variable with vehicles and their attributes
 variable "vehicles" {
   description = "Map of vehicles and their attributes"
-  type        = map(any)  # Allow lists in the map
+  type        = map(list(string))  # Ensure all values are lists of strings
   default = {
     "car"   = ["comfortable", "fast", "fuel-efficient"]  # Car has multiple attributes
-    "bike"   = "eco-friendly"  # Bike has one attribute
-    "truck"  = ["spacious", "powerful", "suitable for cargo"]  # Truck has multiple attributes
+    "bike"  = ["eco-friendly"]  # Bike now has a single attribute as a list
+    "truck" = ["spacious", "powerful", "suitable for cargo"]  # Truck has multiple attributes
   }
 }
 
@@ -114,8 +114,7 @@ resource "null_resource" "vehicle_attributes" {
 output "vehicle_attributes_output" {
   value = [
     for vehicle in keys(var.vehicles) :
-    "${vehicle} has the attribute of '${join(", ", var.vehicles[vehicle])}'"
+    "${vehicle} has the attributes of '${join(", ", var.vehicles[vehicle])}'"
   ]
 }
-
 

@@ -221,6 +221,9 @@ For each instance created, Terraform automatically assigns an index to it, start
 For example, if you set count = 3, the index values for the created instances will be:
 Instance 1: count.index = 0
 Instance 2: count.index = 1
+
+
+*/
 Instance 3: count.index = 2
 ----------------------------------------------------------------------------------------------------------------
 

@@ -30,13 +30,13 @@ locals {
 
   # Using concat function
   additional_ips   = ["172.16.0.1", "192.168.1.2"]
-  combined_ips     = concat(var.ip_list, additional_ips)
+  combined_ips     = concat(var.ip_list, local.additional_ips)
 
   # Using timestamp function
   current_timestamp = timestamp()
 
   # Using timeadd function
-  future_time      = timeadd(current_timestamp, "48h")  # Adds 48 hours to current time
+  future_time      = timeadd(local.current_timestamp, "48h")  # Adds 48 hours to current time
 }
 
 # Output results
@@ -67,4 +67,3 @@ output "current_timestamp" {
 output "future_time" {
   value = local.future_time
 }
-

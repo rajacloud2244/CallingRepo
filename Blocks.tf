@@ -9,10 +9,6 @@ Outputs
 Data
 Modules
 Dynamic-Nested
-*/
-
-
-
 
 terraform {  
   required_version = ">= 1.0"
@@ -96,5 +92,4 @@ output "resource_group_name" {
 }
 
 
-
-
+*/

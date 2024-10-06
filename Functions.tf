@@ -3,7 +3,7 @@ terraform {
 }
 
 # Variables
-variable "name" {
+variable "name0" {
   description = "Base name for resources"
   default     = "MyResource"
 }
@@ -21,8 +21,8 @@ variable "ip_list" {
 # Local values
 locals {
   # Using upper and lower functions
-  upper_name       = upper(var.name)
-  lower_name       = lower(var.name)
+  upper_name       = upper(var.name0)
+  lower_name       = lower(var.name0)
 
   # Using max and min functions
   max_value        = max(var.number_list...)

@@ -1,3 +1,23 @@
+/*
+min
+max
+lower
+upper
+concat - cobimes mutiples list in to single l;ist
+to set - removes duplocates values
+timestamp
+file- read content of file
+all true
+flat list - list of list in to a single list
+absolute value
+list lenght
+lookup
+merge 
+join - combines elements of list in to a single list
+split - 
+
+*/
+
 terraform {
   required_version = ">= 1.0"
 }

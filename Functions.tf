@@ -14,7 +14,21 @@ list lenght
 lookup
 merge 
 join - combines elements of list in to a single list
-split - 
+split - the split function is used to divide a string into a list of substrings based on a specified delimiter
+
+# Variable definitions
+variable "csv_string" {
+  description = "A comma-separated string of fruits"
+  default     = "apple,banana,cherry,date"
+}
+op-
+fruit_list = [
+  "apple",
+  "banana",
+  "cherry",
+  "date"
+]
+
 
 */
 

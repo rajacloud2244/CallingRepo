@@ -64,8 +64,6 @@ locals {
   merged_fruit_lists        = merge({ a = ["mango"] }, { b = ["nectarine", "orange"] })
   sliced_fruit_list         = slice(var.fruit_list, 1, 3)
   unique_combined_fruit_set = toset(local.combined_fruits)
-  
-  # New additions
   fruit_count               = length(var.fruit_list)            # Count of fruits in the list
   fruit_prices_lookup       = [for fruit in var.fruit_list : lookup(var.fruit_prices, fruit, "Price not found")]  # Lookup prices
 }

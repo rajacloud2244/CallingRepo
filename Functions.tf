@@ -53,7 +53,7 @@ variable "nested_fruit_lists" {
 locals {
   unique_fruit_set         = toset(var.fruit_list)
   are_all_conditions_true   = alltrue(concat(var.conditions, var.additional_conditions))
-  absolute_value    negative_number        = abs(var.)
+  absolute_value            = abs(var.negative_number)
   upper_case_fruit          = upper(join(", ", var.fruit_list))
   lower_case_fruit          = lower(join(", ", var.fruit_list))
   combined_fruits           = concat(var.fruit_list, var.additional_fruits)

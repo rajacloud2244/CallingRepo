@@ -19,3 +19,35 @@
 - **Optional Blocks**: Blocks that are not required but can be included for additional configuration. For example, a subnet block in an AWS VPC configuration.
 - **Parameters in Standard Modules**: When calling modules, it’s essential to pass required parameters (like location, name) that the module expects.
 - **Dynamic Blocks**: Used to generate nested blocks dynamically within resources or modules, useful for situations where the number of sub-blocks can vary.
+
+# Terraform Configuration Structure
+
+## Version Block
+Specifies the required Terraform version.
+
+## Provider
+Configures the provider to manage resources on a specific platform.
+
+## Backend
+Defines where Terraform's state file is stored.
+
+## Resource
+Specifies the resources that Terraform will create and manage.
+
+## Variable
+Declares input parameters for configuration.
+
+## Locals
+Defines reusable local values within the configuration.
+
+## Outputs
+Defines values that can be returned after the execution of the configuration.
+
+## Data
+Fetches information from existing resources outside the configuration.
+
+## Modules
+Encapsulates reusable configurations for better organization.
+
+## Dynamic-Nested
+Dynamic blocks in Terraform are used to create repeating sections of configuration based on a list or set of values. This means you can create multiple similar settings without repeating code.

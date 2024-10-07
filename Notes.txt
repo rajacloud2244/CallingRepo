@@ -1,0 +1,10 @@
+Callings:-
+var.
+local.
+data.
+moule.
+output.
+resource.
+count.index
+each.value - loop irtation
+criteria.value- accessing attributes of map/object

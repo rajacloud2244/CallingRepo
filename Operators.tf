@@ -1,3 +1,10 @@
+/*
+Curly Braces {}: Define maps (key-value pairs).
+Square Brackets []: Define lists (ordered collections).
+Parentheses (): Used for grouping expressions and function calls.
+*/
+
+
 terraform {
   required_version = ">= 1.0"
 }

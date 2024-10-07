@@ -5,7 +5,7 @@ on:
       - main
 jobs:
   terraform:
-    name: "Run Terraform Plan"
+    name: "Run Terraform Apply"
     runs-on: ubuntu-latest
     # Add env variables for service principal
     env:

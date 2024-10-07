@@ -1,0 +1,29 @@
+#This file will help you exclude common files and directories that you typically don't want to track in version control.
+
+Example .gitignore for Terraform
+
+# Local Terraform state files
+*.tfstate
+*.tfstate.*
+
+# Backup files
+*.tfstate.backup
+
+# Terraform plan files
+*.tfplan
+
+# Local .terraform directories
+.terraform/
+
+# Environment variables
+*.tfvars
+
+# IDE or editor settings
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db

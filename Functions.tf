@@ -118,14 +118,10 @@ output "sliced_fruit_list" {
 
 output "unique_combined_fruit_set" {
   value = local.unique_combined_fruit_set
-
+}
 
 output "fruit_count" {
   value = local.fruit_count
-}
-
-terraform {
-  required_version = ">= 1.0"
 }
 
 # Variable definitions

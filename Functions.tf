@@ -29,6 +29,7 @@ fruit_list = [
   "date"
 ]
 
+note - join and spli are opposite
 
 */
 

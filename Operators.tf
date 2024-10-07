@@ -107,7 +107,7 @@ output "joined_fruit_string" {
 
 
 # Variable definitions
-variable "countries" {
+variable "countries0" {
   description = "A map of countries and their capitals"
   default     = {
     "USA"     = "Washington, D.C."
@@ -116,7 +116,7 @@ variable "countries" {
   }
 }
 
-variable "fruit_list" {
+variable "fruit_lists" {
   description = "A list of fruits"
   default     = ["apple", "banana", "cherry"]
 }
@@ -127,8 +127,8 @@ variable "instance_count" {
 }
 
 locals {
-  first_fruit = local.fruit_list[0]  # Accessing the first element
-  capital_of_usa = local.countries["USA"]  # Accessing a map value
+  first_fruit = local.fruit_lists[0]  # Accessing the first element
+  capital_of_usa = local.countries0["USA"]  # Accessing a map value
   is_enabled = true
   status = local.is_enabled ? "Enabled" : "Disabled"  # Ternary operation
 }

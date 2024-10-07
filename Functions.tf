@@ -174,19 +174,4 @@ output "capital" {
   value = local.capital
 }
 
-# Variable definitions
-variable "csv_string" {
-  description = "A string containing comma-separated values"
-  default     = "apple,banana,cherry,date"
-}
-
-# Local values
-locals {
-  fruit_list = split(",", var.csv_string)  # Splits the string into a list of fruits
-}
-
-# Output results
-output "fruit_list2" {
-  value = local.fruit_list
-}
 

@@ -47,11 +47,8 @@ locals {
   absolute_value            = abs(var.negative_number)         # Gets the absolute value
   upper_case_fruit          = upper(join(", ", var.fruit_list))  # Converts fruits to upper case
   lower_case_fruit          = lower(join(", ", var.fruit_list))  # Converts fruits to lower case
- 
-
   combined_fruits           = concat(var.fruit_list, var.additional_fruits)  # Combines two lists
   current_timestamp          = timestamp()                      # Gets the current timestamp
- 
   flattened_fruit_list      = flatten(var.nested_fruit_lists)  # Flattens a list of lists
   joined_fruits             = join(", ", local.combined_fruits)  # Joins fruits into a single string
   split_fruits              = split(", ", local.joined_fruits)  # Splits the joined string back into a list

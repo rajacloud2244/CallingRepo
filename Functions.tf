@@ -3,7 +3,7 @@ min
 max
 lower
 upper
-concat - cobimes mutiples list in to single l;ist
+concat - cobimes mutiples list in to single list
 to set - removes duplocates values
 timestamp
 file- read content of file

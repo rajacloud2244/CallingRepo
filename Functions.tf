@@ -91,9 +91,6 @@ output "current_timestamp" {
   value = local.current_timestamp
 }
 
-output "future_timestamp" {
-  value = local.future_timestamp
-}
 
 output "flattened_fruit_list" {
   value = local.flattened_fruit_list

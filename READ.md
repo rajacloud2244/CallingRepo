@@ -49,5 +49,5 @@ Fetches information from existing resources outside the configuration.
 ## Modules
 Encapsulates reusable configurations for better organization.
 
-## Dynamic-Nested
+## Dynamic-Nested - means- (for loop applied to block)
 Dynamic blocks in Terraform are used to create repeating sections of configuration based on a list or set of values. This means you can create multiple similar settings without repeating code.

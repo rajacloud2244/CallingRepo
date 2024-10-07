@@ -186,7 +186,7 @@ locals {
 }
 
 # Output results
-output "fruit_list" {
+output "fruit_list2" {
   value = local.fruit_list
 }
 

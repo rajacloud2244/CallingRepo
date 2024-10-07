@@ -129,3 +129,50 @@ output "is_empty" {
   value = local.is_empty
 }
 
+
+
+
+variable "sample_list0" {
+  description = "A list of sample values"
+  default     = ["apple", "banana", "cherry"]
+}
+
+variable "sample_map0" {
+  description = "A map of fruits and their colors"
+  default     = {
+    apple  = "red"
+    banana = "yellow"
+  }
+}
+
+locals {
+  # Another map
+  map_b = {
+    cherry = "red"
+    date   = "brown"
+  }
+
+  # Merge maps
+  merged_map = merge(var.sample_map0, local.map_b)
+
+  # Flattening a list of lists
+  nested_list = [["apple", "banana"], ["cherry", "date"]]
+  flat_list   = flatten(local.nested_list)
+
+  # Split a string into a list
+  split_string = "apple,banana,cherry"
+  split_list   = split(",", local.split_string)
+}
+
+output "merged_map" {
+  value = local.merged_map
+}
+
+output "flat_list" {
+  value = local.flat_list
+}
+
+output "split_list" {
+  value = local.split_list
+}
+

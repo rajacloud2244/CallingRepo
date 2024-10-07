@@ -124,7 +124,16 @@ output "fruit_count" {
   value = local.fruit_count
 }
 
+terraform {
+  required_version = ">= 1.0"
+}
+
 # Variable definitions
+variable "fruit_list" {
+  description = "A list of fruits"
+  default     = ["apple", "banana", "cherry"]
+}
+
 variable "countries" {
   description = "A map of countries and their capitals"
   type        = map(string)

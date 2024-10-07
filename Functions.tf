@@ -178,6 +178,10 @@ output "split_list" {
 
 
 
+terraform {
+  required_version = ">= 1.0"
+}
+
 # Variable definitions
 variable "fruit_list" {
   description = "A list of fruits"

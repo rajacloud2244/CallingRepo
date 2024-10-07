@@ -2,6 +2,9 @@
 Curly Braces {}: Define maps (key-value pairs).
 Square Brackets []: Define lists (ordered collections).
 Parentheses (): Used for grouping expressions and function calls.
+condition ? true_value : false_value
+ The question mark is used to create a concise conditional expression that evaluates a condition and returns one of two values based on whether the condition is true or false.
+
 */
 
 

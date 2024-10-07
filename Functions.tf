@@ -47,7 +47,7 @@ locals {
   absolute_value            = abs(var.negative_number)         # Gets the absolute value
   upper_case_fruit          = upper(join(", ", var.fruit_list))  # Converts fruits to upper case
   lower_case_fruit          = lower(join(", ", var.fruit_list))  # Converts fruits to lower case
-  min_number                = min(var.number_list)             # Finds the minimum number
+ 
 
   combined_fruits           = concat(var.fruit_list, var.additional_fruits)  # Combines two lists
   current_timestamp          = timestamp()                      # Gets the current timestamp
@@ -81,13 +81,7 @@ output "lower_case_fruit" {
   value = local.lower_case_fruit
 }
 
-output "min_number" {
-  value = local.min_number
-}
 
-output "max_number" {
-  value = local.max_number
-}
 
 output "combined_fruits" {
   value = local.combined_fruits

@@ -39,7 +39,6 @@ locals {
   logical_not  = !(var.num1 == var.num2)            # Logical NOT
 
   # String operations
-  greeting     = "Hello, " << "World!"               # String concatenation
   fruit_list   = split(",", var.csv_string)          # Split string into list
   joined_fruit_string = join(" | ", local.fruit_list) # Join list back into string
 }

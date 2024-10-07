@@ -93,14 +93,6 @@ output "logical_not" {
   value = local.logical_not
 }
 
-output "greeting" {
-  value = local.greeting
-}
-
-output "fruit_list" {
-  value = local.fruit_list
-}
-
 output "joined_fruit_string" {
   value = local.joined_fruit_string
 }

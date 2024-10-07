@@ -67,3 +67,65 @@ output "current_timestamp" {
 output "future_time" {
   value = local.future_time
 }
+
+# Variables
+variable "sample_list" {
+  description = "A list of sample values"
+  default     = ["apple", "banana", "cherry"]
+}
+
+variable "sample_map" {
+  description = "A sample map of fruits and their colors"
+  default     = {
+    apple  = "red"
+    banana = "yellow"
+    cherry = "red"
+  }
+}
+
+# Local values
+locals {
+  # Using length function
+  list_length = length(var.sample_list)  # Gets the length of the list
+
+  # Using lookup function
+  banana_color = lookup(var.sample_map, "banana", "unknown")  # Looks up banana's color
+
+  # Using join function
+  fruits_string = join(", ", var.sample_list)  # Joins list into a string
+
+  # Using zipmap function
+  fruit_names = ["apple", "banana", "cherry"]
+  fruit_colors = ["red", "yellow", "red"]
+  fruit_map    = zipmap(local.fruit_names, local.fruit_colors)  # Creates a map from two lists
+
+  # Using true and false
+  is_fruit = true
+  is_empty = false
+}
+
+# Output results
+output "list_length" {
+  value = local.list_length
+}
+
+output "banana_color" {
+  value = local.banana_color
+}
+
+output "fruits_string" {
+  value = local.fruits_string
+}
+
+output "fruit_map" {
+  value = local.fruit_map
+}
+
+output "is_fruit" {
+  value = local.is_fruit
+}
+
+output "is_empty" {
+  value = local.is_empty
+}
+

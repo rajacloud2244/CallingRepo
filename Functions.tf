@@ -23,8 +23,10 @@ variable "negative_number" {
   default     = -42
 }
 
+# Ensure this is defined as a list of numbers
 variable "number_list" {
   description = "A list of numbers"
+  type        = list(number)  # Specify the type explicitly
   default     = [10, 20, 5, 30]
 }
 
@@ -49,6 +51,7 @@ locals {
   max_number                = max(var.number_list)             # Finds the maximum number
   combined_fruits           = concat(var.fruit_list, var.additional_fruits)  # Combines two lists
   current_timestamp          = timestamp()                      # Gets the current timestamp
+  future_timestamp           = timeadd(current_timestamp, "48h")  # Adds 48 hours to the current timestamp
   flattened_fruit_list      = flatten(var.nested_fruit_lists)  # Flattens a list of lists
   joined_fruits             = join(", ", local.combined_fruits)  # Joins fruits into a single string
   split_fruits              = split(", ", local.joined_fruits)  # Splits the joined string back into a list
@@ -92,6 +95,10 @@ output "combined_fruits" {
 
 output "current_timestamp" {
   value = local.current_timestamp
+}
+
+output "future_timestamp" {
+  value = local.future_timestamp
 }
 
 output "flattened_fruit_list" {

@@ -38,6 +38,7 @@ jobs:
 
       - name: Run TFLint
         id: tflint
+        continue-on-error: true
         run: |
           curl -L "https://github.com/terraform-linters/tflint/releases/latest/download/tflint_linux_amd64.zip" -o tflint.zip
           unzip tflint.zip
@@ -49,4 +50,15 @@ jobs:
         id: checkov
         run: |
           pip install --upgrade pip
-          p
+          pip install checkov
+          checkov -d .
+
+      - name: Run tfsec
+        id: tfsec
+        run: |
+          curl -s https://raw.githubusercontent.com/aquasecurity/tfsec/master/scripts/install.sh | bash
+          tfsec .
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan

@@ -178,11 +178,8 @@ output "split_list" {
 
 
 
-terraform {
-  required_version = ">= 1.0"
-}
 
-# Variable definitions
+# Define a set variable
 variable "fruit_list" {
   description = "A list of fruits"
   default     = ["apple", "banana", "cherry", "apple"]  # Notice the duplicate "apple"
@@ -200,9 +197,9 @@ variable "negative_number" {
 
 # Local values
 locals {
-  unique_fruit_set         = toset(var.fruit_list)             # Converts list to set
-  are_all_conditions_true   = alltrue(var.conditions)           # Checks if all are true
-  absolute_value            = abs(var.negative_number)          # Gets the absolute value
+  unique_fruit_set         = toset(var.fruit_list)            # Converts list to set
+  are_all_conditions_true   = alltrue(var.conditions)          # Checks if all are true
+  absolute_value            = abs(var.negative_number)         # Gets the absolute value
 }
 
 # Output results

@@ -48,10 +48,10 @@ locals {
   upper_case_fruit          = upper(join(", ", var.fruit_list))  # Converts fruits to upper case
   lower_case_fruit          = lower(join(", ", var.fruit_list))  # Converts fruits to lower case
   min_number                = min(var.number_list)             # Finds the minimum number
-  max_number                = max(var.number_list)             # Finds the maximum number
+
   combined_fruits           = concat(var.fruit_list, var.additional_fruits)  # Combines two lists
   current_timestamp          = timestamp()                      # Gets the current timestamp
-  future_timestamp           = timeadd(current_timestamp, "48h")  # Adds 48 hours to the current timestamp
+ 
   flattened_fruit_list      = flatten(var.nested_fruit_lists)  # Flattens a list of lists
   joined_fruits             = join(", ", local.combined_fruits)  # Joins fruits into a single string
   split_fruits              = split(", ", local.joined_fruits)  # Splits the joined string back into a list

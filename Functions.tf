@@ -118,11 +118,39 @@ output "sliced_fruit_list" {
 
 output "unique_combined_fruit_set" {
   value = local.unique_combined_fruit_set
-}
 
-# New outputs
+
 output "fruit_count" {
   value = local.fruit_count
 }
 
+# Variable definitions
+variable "countries" {
+  description = "A map of countries and their capitals"
+  type        = map(string)
+  default     = {
+    USA        = "Washington, D.C."
+    Canada     = "Ottawa"
+    France     = "Paris"
+    Japan      = "Tokyo"
+  }
+}
 
+variable "country_to_lookup" {
+  description = "The country to look up"
+  default     = "Canada"
+}
+
+# Local values
+locals {
+  capital = lookup(var.countries, var.country_to_lookup, "Capital not found")
+}
+
+# Output results
+output "country" {
+  value = var.country_to_lookup
+}
+
+output "capital" {
+  value = local.capital
+}

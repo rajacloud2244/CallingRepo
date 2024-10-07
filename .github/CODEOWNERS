@@ -1,5 +1,22 @@
-# This is a comment
-# Each line is a file pattern followed by one or more owners
+
 
 # Specify the default code owners for the entire repository
 *       @rajacloud2244  # Replace with your GitHub username or team
+
+# This file defines the individuals and teams that are responsible for code in this repository.
+# Read more: <https://help.github.com/articles/about-codeowners/>
+#
+# Order is important: the last matching pattern has the highest precedence
+
+# DDevelopment team must review any changes to GitHub actions and workflows.
+/.github/       @rajacloud2244/dev-team
+
+# Development team must review any changes to Makefiles
+**/Makefile     @rajacloud2244/dev-team
+*/Makefile.   @rajacloud2244/dev-team
+
+# Development team must review any changes to Terraform files.
+*/.tf        @rajacloud2244/dev-team
+
+# DHS Development must review all changes to CODEOWNERS.
+.github/CODEOWNERS @rajacloud2244/dev-team

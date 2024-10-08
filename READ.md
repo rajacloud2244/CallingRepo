@@ -30,5 +30,5 @@
 - **`Attribute Reference`**: Accessing attributes of resources or data blocks, e.g., `data.aws_ami.example.id`.
 - **`Timeouts`**: Configuring timeouts for operations on resources to specify how long to wait for certain actions to complete.
 - **`Optional Blocks`**: Blocks that are not required but can be included for additional configuration. For example, a subnet block in an AWS VPC configuration.
-- **`Parameters in Standard Modules`**: When calling modules, it’s essential to pass required parameters (like location, name) that the module expects.
+- **`Parameters in Standard Modules`**: When calling modules in calling repo, it’s essential to pass all required parameters that are in standard repo (like location, name)
 - **`Dynamic Blocks`**: Used to generate nested blocks dynamically within resources or modules, useful for situations where the number of sub-blocks can vary.

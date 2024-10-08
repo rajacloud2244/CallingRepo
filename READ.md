@@ -121,11 +121,9 @@ dynamic "site_config" {
     dotnet_framework_version = site_config.value.logic_app_dotnet_framework_version
     ftps_state             = site_config.value.logic_app_ftps_state
   }
-}
-
-dynamic "ip_restriction" {
-  for_each = var.logic_app_ip_restriction
-  content {
+     dynamic "ip_restriction" {
+      for_each = var.logic_app_ip_restriction
+    content {
     name                  = ip_restriction.value.logic_app_ip_name
     ip_address            = ip_restriction.value.logic_app_ip_address
     service_tag           = ip_restriction.value.logic_app_ip_service_tag
@@ -133,6 +131,7 @@ dynamic "ip_restriction" {
     priority              = ip_restriction.value.logic_app_ip_priority
     action                = ip_restriction.value.logic_app_ip_action
   }
+}
 }
 
 identity {

@@ -41,7 +41,7 @@ Conditional expressions allow you to set values based on a condition.
 
 **Syntax:**
 ```hcl
-result = condition ? true_value : false_value
+1. result = condition ? true_value : false_value
 
 
 # Azure Storage Account Example
@@ -51,7 +51,7 @@ This document provides an example of how to conditionally create an Azure Storag
 ## Terraform Code
 
 ```hcl
-resource "azurerm_storage_account" "example" {
+2. resource "azurerm_storage_account" "example" {
   count                    = var.create_storage ? 1 : 0
   name                     = "examplestoracc"
   resource_group_name      = "example-rg"

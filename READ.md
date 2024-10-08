@@ -32,3 +32,32 @@
 - **`Optional Blocks`**: Blocks that are not required but can be included for additional configuration. For example, a subnet block in an AWS VPC configuration.
 - **`Parameters in Standard Modules`**: When calling modules in calling repo, it’s essential to pass all required parameters that are in standard repo (like location, name)
 - **`Dynamic Blocks`**: Used to generate nested blocks dynamically within resources or modules, useful for situations where the number of sub-blocks can vary.
+
+# Terraform Conditional Constructs
+
+## 1. Conditional Expressions
+
+Conditional expressions allow you to set values based on a condition.
+
+**Syntax:**
+```hcl
+result = condition ? true_value : false_value
+
+
+# Azure Storage Account Example
+
+This document provides an example of how to conditionally create an Azure Storage Account using Terraform.
+
+## Terraform Code
+
+```hcl
+resource "azurerm_storage_account" "example" {
+  count                    = var.create_storage ? 1 : 0
+  name                     = "examplestoracc"
+  resource_group_name      = "example-rg"
+  location                 = "West US"
+  account_tier             = "Standard"
+  account_replication_type  = "LRS"
+}
+
+

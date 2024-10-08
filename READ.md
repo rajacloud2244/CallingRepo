@@ -58,6 +58,87 @@ resource "azurerm_storage_account" "example" {
   location                 = "West US"
   account_tier             = "Standard"
   account_replication_type  = "LRS"
+
+
+# Terraform Configuration for Azure VNet with Dynamic Subnets
+
+This document provides a Terraform configuration to create an Azure Virtual Network (VNet) with dynamic subnets.
+
+## Terraform Code
+
+```hcl
+provider "azurerm" {
+  features {}
 }
+
+resource "azurerm_resource_group" "example" {
+  name     = "example-resources"
+  location = "East US"
+}
+
+resource "azurerm_virtual_network" "example" {
+  name                = "example-vnet"
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
+  address_space       = ["10.0.0.0/16"]
+
+  dynamic "subnet" {
+    for_each = var.subnets
+
+    content {
+      name          = subnet.value.name
+      address_prefix = subnet.value.address_prefix
+    }
+  }
+}
+
+
+    content {
+      name          = subnet.value.name
+      address_prefix = subnet.value.address_prefix
+    }
+  }
+}
+
+output "vnet_id" {
+  value = azurerm_virtual_network.example.id
+}
+
+
+# Terraform Dynamic Blocks for Logic App Configuration
+
+This document provides examples of dynamic blocks for configuring a Logic App in Terraform, including site configuration and IP restrictions.
+
+## Terraform Code
+
+### Dynamic Blocks
+
+```hcl
+dynamic "site_config" {
+  for_each = var.logic_app_site_config
+  content {
+    always_on              = site_config.value.logic_app_site_config_always_on
+    dotnet_framework_version = site_config.value.logic_app_dotnet_framework_version
+    ftps_state             = site_config.value.logic_app_ftps_state
+  }
+}
+
+dynamic "ip_restriction" {
+  for_each = var.logic_app_ip_restriction
+  content {
+    name                  = ip_restriction.value.logic_app_ip_name
+    ip_address            = ip_restriction.value.logic_app_ip_address
+    service_tag           = ip_restriction.value.logic_app_ip_service_tag
+    virtual_network_subnet_id = ip_restriction.value.logic_app_ip_subnet_id
+    priority              = ip_restriction.value.logic_app_ip_priority
+    action                = ip_restriction.value.logic_app_ip_action
+  }
+}
+
+identity {
+  type = var.logic_app_identity_type 
+  identity_ids = var.logic_app_identity_ids == "UserAssigned" ? var.logic_app_identity_ids : null 
+}
+
 
 
